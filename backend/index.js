@@ -7,6 +7,7 @@ const todoRoutes = require('./routes/todoRoutes');
 const connectionOptions = { useUnifiedTopology: true, useNewUrlparser: true, useFindAndModify: false };
 const { requireAuth } = require('./middleware/authMiddleware')
 
+
 // Database connection URL
 mongoose.connect('mongodb://localhost/spades', {
     useNewUrlparser: true,
@@ -34,7 +35,8 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/api', routes);
-app.use('/todos', requireAuth, todoRoutes);
-//app.use('/todos', todoRoutes);
+
+//app.use('/todos', requireAuth, todoRoutes);
+app.use('/todos', todoRoutes);
 
 app.listen(8000);

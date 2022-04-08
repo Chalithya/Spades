@@ -5,19 +5,24 @@ const requireAuth = (req, res, next) => {
 
     //checking json web token and verifying it
     if (token) {
+
         jwt.verify(token, 'secret', (err, decodeToken) => {
+
             if (err) {
+
                 console.log(err.message);
-                // res.redirect('/login);
             } else {
+
                 console.log(decodeToken);
                 next();
             }
         })
     } else {
+
         alert('No token');
         console.log('No token');
         res.redirect('/login');
+        
     }
 }
 
